@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classifieds - Buy & Sell Used Products</title>
+</head>
+<body>
+    <h1>Classifieds - Buy & Sell Used Products</h1>
+
+    <!-- Form to add a product -->
+    <h2>Add a Product for Sale</h2>
+    <input type="text" id="productName" placeholder="Enter product name" /><br><br>
+    <textarea id="productDescription" placeholder="Enter product description" rows="4" cols="50"></textarea><br><br>
+    <input type="number" id="productPrice" placeholder="Enter product price" /><br><br>
+    <button onclick="addProduct()">Add Product</button>
+
+    <!-- List of products -->
+    <h2>Available Products</h2>
+    <ul id="productList"></ul>
+
+    <script>
+        // Function to add a new product to the list
+        function addProduct() {
+            // Get the input values
+            const productName = document.getElementById('productName').value.trim();
+            const productDescription = document.getElementById('productDescription').value.trim();
+            const productPrice = document.getElementById('productPrice').value.trim();
+
+            // Check if the inputs are valid
+            if (productName === '' || productDescription === '' || productPrice === '') {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            // Create a new list item for the product
+            const productList = document.getElementById('productList');
+            const listItem = document.createElement('li');
+            
+            // Create content for the product
+            const productInfo = `
+                <strong>${productName}</strong><br>
+                ${productDescription}<br>
+                Price: $${productPrice}
+            `;
+            
+            listItem.innerHTML = productInfo;
+
+            // Add the product to the list
+            productList.appendChild(listItem);
+
+            // Clear the input fields after adding the product
+            document.getElementById('productName').value = '';
+            document.getElementById('productDescription').value = '';
+            document.getElementById('productPrice').value = '';
+        }
+    </script>
+</body>
+</html>

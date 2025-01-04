@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        .form-section, .task-section {
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .pending {
+            background-color: #f0ad4e;
+            color: white;
+        }
+        .inprogress {
+            background-color: #5bc0de;
+            color: white;
+        }
+        .completed {
+            background-color: #5cb85c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project Management Dashboard</h1>
+    <div class="container">
+        <!-- Form to add a new task -->
+        <div class="form-section">
+            <h3>Add a New Task</h3>
+            <input type="text" id="taskName" placeholder="Enter task name" />
+            <select id="taskStatus">
+                <option value="Pending">Pepnding</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <button onclick="addTask()">Add Task</button>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-section">
+            <h3>Task List</h3>
+            <ul id="taskList" class="task-list"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a new task
+        function addTask() {
+            const taskName = document.getElementById('taskName').value.trim();
+            const taskStatus = document.getElementById('taskStatus').value;
+
+            if (taskName === '') {
+                alert('Please enter a task name!');
+                return;
+            }
+
+            // Create a new task list item
+            const taskList = document.getElementById('taskList');
+            const listItem = document.createElement('li');
+            listItem.classList.add('task-item');
+
+            // Create task name element
+            const taskText = document.createElement('span');
+            taskText.textContent = taskName;
+            listItem.appendChild(taskText);
+
+            // Create task status element
+            const statusSpan = document.createElement('span');
+            statusSpan.classList.add('task-status', taskStatus.toLowerCase().replace(' ', ''));
+            statusSpan.textContent = taskStatus;
+            listItem.appendChild(statusSpan);
+
+            // Create a button to change status
+            const changeStatusBtn = document.createElement('button');
+            changeStatusBtn.textContent = 'Change Status';
+            changeStatusBtn.onclick = () => changeStatus(statusSpan);
+            listItem.appendChild(changeStatusBtn);
+
+            // Add the new task to the list
+            taskList.appendChild(listItem);
+
+            // Clear the input fields
+            document.getElementById('taskName').value = '';
+            document.getElementById('taskStatus').value = 'Pending';
+        }
+
+        // Function to change the status of a task
+        function changeStatus(statusElement) {
+            const currentStatus = statusElement.textContent;
+            let newStatus;
+
+            if (currentStatus === 'Pending') {
+                newStatus = 'In Progress';
+                statusElement.classList.remove('pending');
+                statusElement.classList.add('inprogress');
+            } else if (currentStatus === 'In Progress') {
+                newStatus = 'Completed';
+                statusElement.classList.remove('inprogress');
+                statusElement.classList.add('completed');
+            } else if (currentStatus === 'Completed') {
+                newStatus = 'Pending';
+                statusElement.classList.remove('completed');
+                statusElement.classList.add('pending');
+            }
+
+            statusElement.textContent = newStatus;
+        }
+    </script>
+</body>
+</html>

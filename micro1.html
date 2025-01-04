@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblogging</title>
+</head>
+<body>
+    <h1>Microblogging</h1>
+    <textarea id="postInput" placeholder="Write your post here..." rows="4" cols="50"></textarea><br>
+    <button onclick="addPost()">Post</button>
+    <h2>Posts</h2>
+    <ul id="postList"></ul>
+
+    <script>
+        // Function to add a post
+        function addPost() {
+            const postInput = document.getElementById('postInput');
+            const postText = postInput.value.trim();
+
+            if (postText === '') {
+                alert('Please write something before posting!');
+                return;
+            }
+
+            // Create a new list item for the post
+            const postList = document.getElementById('postList');
+            const listItem = document.createElement('li');
+            listItem.textContent = postText;
+
+            // Add the post to the list
+            postList.appendChild(listItem);
+
+            // Clear the textarea
+            postInput.value = '';
+        }
+    </script>
+</body>
+</html>

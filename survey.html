@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            border: 1px solid;
+            text-align:center;
+            
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Survey</h1>
+    
+    <form id="surveyForm">
+        <div class="question">
+            <label>What is your favorite color?</label><br><br>
+            <input type="radio" name="q1" value="Red"> Red<br>
+            <input type="radio" name="q1" value="Blue"> Blue<br>
+            <input type="radio" name="q1" value="Green">Green<br>
+        </div>
+        
+        <div class="question">
+            <label>What is your age group?</label><br>
+            <input type="radio" name="q2" value="Under 18"> Under 18
+            <input type="radio" name="q2" value="18-25"> 18-25
+            <input type="radio" name="q2" value="26-35"> 26-35
+        </div>
+
+        <div class="question">
+            <label>Do you like programming?</label><br>
+            <input type="radio" name="q3" value="Yes"> Yes
+            <input type="radio" name="q3" value="No"> No
+        </div>
+        
+        <div class="question">
+            <label>Do you like reading books?</label><br>
+            <input type="radio" name="q4" value="Yes"> Yes
+            <input type="radio" name="q4" value="No"> No
+        </div>
+
+        <div class="question">
+            <label>What is your favorite season?</label><br>
+            <input type="radio" name="q5" value="Spring"> Spring
+            <input type="radio" name="q5" value="Summer"> Summer
+            <input type="radio" name="q5" value="Winter"> Winter
+        </div>
+        
+        <button type="button" onclick="alert('sucessfully sumitted')">Submit Survey</button>
+    </form>
+    
+    
+
+   
+
+</body>
+</html>
